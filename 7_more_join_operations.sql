@@ -129,6 +129,14 @@ WHERE movie.yr = 1978
 GROUP BY movie.id
 ORDER BY COUNT(*) DESC
 
+--#the above code doesn't work, thy this:
+SELECT movie.title, COUNT(actor.id) FROM movie 
+  JOIN casting ON casting.movieid=movie.id
+  JOIN actor ON casting.actorid = actor.id
+  WHERE movie.yr=1978
+GROUP BY movie.title
+ORDER BY COUNT(actor.id) DESC, movie.title; 
+
 -- # 16. List all the people who have worked with 'Art Garfunkel'.
 SELECT a.name
   FROM (SELECT movie.*
